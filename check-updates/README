@@ -1,5 +1,8 @@
-A simple script checking for updates. Should be put e.g. in /usr/local/bin and scheduled in anacron:
+A simple script checking for updates. If there are no waiting upgrades it'll simply return.
+Otherwise it prints a nice summary of pending updates.
+
+Example:
 
 # /etc/anacrontab
 # period   job delay (minutes)   job id   command
-@weekly   20   checkupdate   nice check-updates virgo
+@weekly   20   checkupdate   nice check-updates | mail -E -s "Pending update(s)" username
