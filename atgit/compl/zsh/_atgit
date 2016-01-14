@@ -1,0 +1,8 @@
+#compdef atgit
+
+# add this to your fpath (like in .zshrc):
+# fpath=(/path/to/dir/with/this/file $fpath)
+
+_arguments \
+    '(-)1:command: _command_names -e'\
+    '*::arguments: _normal'
