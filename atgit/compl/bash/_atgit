@@ -1,0 +1,16 @@
+# -*- shell-script -*-
+
+_atgit() {
+    local cur
+    _init_completion || return
+
+    COMPREPLY=()
+
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+        cur="${COMP_WORDS[COMP_CWORD]}"
+        COMPREPLY=( $(compgen -A command -- ${cur}) )
+    else
+        _command_offset 1
+        return
+    fi
+} && complete -F _atgit atgit
