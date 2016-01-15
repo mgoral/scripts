@@ -19,7 +19,6 @@ Usage examples:
 
     $ atgit make && atgit make install
     $ atgit source env*
-    $ atgit "mkdir build && cd build && cmake .. && make -j2"
     $ VERBOSE=1 atgit g++ main.cpp -o hello-world
 
 Changing directories is disabled by design as it's more unintuitive than actually useful. Use cd for
