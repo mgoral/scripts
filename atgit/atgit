@@ -1,15 +1,13 @@
 function atgit() {
     local GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-    local IN_GIT=$?
-    local ARGS=$@
 
-    if [[ $IN_GIT -ne 0 ]]; then
-        eval $ARGS
+    if [[ "$GIT_ROOT" == "" ]]; then
+        "$@"
     else
         local CURR_DIR=$PWD
         local OLDPWD_BCK=$OLDPWD
 
-        cd "$GIT_ROOT" && eval $ARGS
+        cd "$GIT_ROOT" && "$@"
 
         cd "$CURR_DIR"
         OLDPWD=$OLDPWD_BCK
