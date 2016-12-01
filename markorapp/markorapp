@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+import subprocess
+import json
+
+def prepare_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('mark')
+    parser.add_argument('command', nargs=argparse.REMAINDER)
+    return parser.parse_args()
+
+def main():
+    args = prepare_args()
+    if not args.command:
+        return 1
+
+    out = subprocess.check_output(['i3-msg', '-t', 'get_marks']).decode('utf-8')
+    marks = json.loads(out)
+
+    if args.mark in marks:
+        # check_output to not spam stdout with [{"success":true}]
+        subprocess.check_output(['i3-msg', '[con_mark="%s"]' % args.mark, 'focus'])
+    else:
+        subprocess.Popen(args.command)
+
+sys.exit(main())

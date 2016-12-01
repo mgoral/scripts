@@ -1,0 +1,8 @@
+Simple script which focuses window with a given mark (i3wm feature) or runs a
+command (usually the one which would create such window :))
+
+Example part of i3 config:
+
+    for_window [class="xterm"] mark t
+    bindsym $mod+Return exec "~/.local/bin/markorapp t xterm"
+
